@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react';
 import {connect} from 'react-redux';
-import {Modal,Button} from 'react-bootstrap';
+import {Container,Row,Col,Modal,Button} from 'react-bootstrap';
 import {editProfile} from '../../actions/action';
 import EditBtn from '../Buttons/EditBtn';
 
@@ -89,35 +89,57 @@ function EditForm(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>Edit Profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    I will not close if you click outside me. Don't even try to press
-                    escape key.
                     {console.log(props)}
-                    <div className="editForm">
-                        <form ref={formRef}>
-                            <input type="text" name="name" placeholder="Enter your name" defaultValue={props.editName} ref={nameRef} /><br />
-                            <input type="email" name="email" placeholder="Enter your email" defaultValue={props.editEmail} ref={emailRef} /><br />
-                            <input type="tel" name="phone" placeholder="Enter your phone" defaultValue={props.editPhone} ref={phoneRef} /><br />
-                            <input type="date" name="dob" defaultValue={props.editDob} ref={dobRef} /><br />
-                            <input type="text" name="city" placeholder="Enter your city" defaultValue={props.editCity} ref={cityRef} /><br />
-                            <input type="text" name="district" placeholder="Enter your district" defaultValue={props.editDistrict} ref={districtRef} /><br />
-                            <select name="province" defaultValue={props.editProvince} ref={provinceRef}>
-                                <option value="Province 1">Province 1</option>
-                                <option value="Province 2">Province 2</option>
-                                <option value="Province 3">Province 3</option>
-                                <option value="Province 4">Province 4</option>
-                                <option value="Province 5">Province 5</option>
-                                <option value="Province 6">Province 6</option>
-                                <option value="Province 7">Province 7</option>
-                            </select><br />
-                            <select name="country" defaultValue={props.editCountry} ref={countryRef}>
-                                {(fetchError)?(<option value="">Error Loading Countries</option>):listCountriesData}
-                            </select><br />
-                            {console.log(props.profilesProp)}
-                        </form>
-                    </div>
+                    <Container>
+                        <Row>
+                            <Col lg={12}>
+                                <div className="editForm">
+                                    <form ref={formRef}>
+                                        <Row>
+                                            <Col lg={6} className="mb-3">
+                                                <input type="text" name="name" placeholder="Enter your name" defaultValue={props.editName} ref={nameRef} />
+                                            </Col>
+                                            <Col lg={6} className="mb-3">
+                                                <input type="email" name="email" placeholder="Enter your email" defaultValue={props.editEmail} ref={emailRef} />
+                                            </Col>
+                                            <Col lg={6} className="mb-3">
+                                                <input type="tel" name="phone" placeholder="Enter your phone" defaultValue={props.editPhone} ref={phoneRef} />
+                                            </Col>
+                                            <Col lg={6} className="mb-3">
+                                                <input type="date" name="dob" defaultValue={props.editDob} ref={dobRef} />
+                                            </Col>
+                                            <Col lg={6} className="mb-3">
+                                                <input type="text" name="city" placeholder="Enter your city" defaultValue={props.editCity} ref={cityRef} />
+                                            </Col>
+                                            <Col lg={6} className="mb-3">
+                                                <input type="text" name="district" placeholder="Enter your district" defaultValue={props.editDistrict} ref={districtRef} />
+                                            </Col>
+                                            <Col lg={6} className="mb-3">
+                                                <select name="province" defaultValue={props.editProvince} ref={provinceRef}>
+                                                    <option value="Province 1">Province 1</option>
+                                                    <option value="Province 2">Province 2</option>
+                                                    <option value="Province 3">Province 3</option>
+                                                    <option value="Province 4">Province 4</option>
+                                                    <option value="Province 5">Province 5</option>
+                                                    <option value="Province 6">Province 6</option>
+                                                    <option value="Province 7">Province 7</option>
+                                                </select>
+                                            </Col>
+                                            <Col lg={6} className="mb-3">
+                                                <select name="country" defaultValue={props.editCountry} ref={countryRef}>
+                                                    {(fetchError)?(<option value="">Error Loading Countries</option>):listCountriesData}
+                                                </select>
+                                            </Col>
+                                        </Row>
+                                        {console.log(props.profilesProp)}
+                                    </form>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={()=>props.handleCloseModal(false)}>

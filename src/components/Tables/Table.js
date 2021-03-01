@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {connect} from 'react-redux';
 import './table.css';
-import {Button} from 'react-bootstrap';
+import {Button,Table as BsTable} from 'react-bootstrap';
 import {deleteProfile,sortProfile} from '../../actions/action';
 import DeleteBtn from '../Buttons/DeleteBtn';
 import SortBtn from '../Buttons/SortBtn';
@@ -50,7 +50,7 @@ function Table(props) {
     });
     return (
         <div className="table">
-            <table>
+            <BsTable striped bordered hover>
                 <thead>
                     <tr>
                         <th>Name&emsp;<SortBtn handleSort={()=>props.sortProfileProp()}/></th>
@@ -67,7 +67,7 @@ function Table(props) {
                 <tbody>
                     {listTableData}
                 </tbody>
-            </table>
+            </BsTable>
             <EditFormContainer show={showModal} handleCloseModal={setShowModal} editId={editProfileId} editName={editProfileName} editEmail={editProfileEmail} editPhone={editProfilePhone} editDob={editProfileDob} editCity={editProfileCity} editDistrict={editProfileDistrict} editProvince={editProfileProvince} editCountry={editProfileCountry} />
         </div>
     )

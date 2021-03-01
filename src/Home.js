@@ -6,7 +6,7 @@ import {TableContainer} from './components/Tables/Table';
 function Home() {
     return (
         <div className="home">
-            <h2>My Profiles</h2>
+            <h2 className="text-center mb-3 font-large">My Profiles</h2>
             <FormContainer />
             <TableContainer />
             <Link to="/profiles">Profiles</Link>

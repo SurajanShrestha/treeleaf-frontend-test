@@ -1,7 +1,9 @@
 import {useState,useEffect,useRef} from 'react';
 import {connect} from 'react-redux';
+import {Container,Row,Col} from 'react-bootstrap';
 import {createProfile} from '../../actions/action';
 import CreateBtn from '../Buttons/CreateBtn';
+import './form.css';
 
 function Form(props){
     /*We used useRef to access DOM nodes anywhere inside this Functional Component.*/
@@ -102,30 +104,65 @@ function Form(props){
         }
     };
     return(
-        <div className="form">
-            <form ref={formRef}>
-                <input type="text" name="name" placeholder="Enter your name" ref={nameRef} /><br />
-                <input type="email" name="email" placeholder="Enter your email" ref={emailRef} /><br />
-                <input type="tel" name="phone" placeholder="Enter your phone" ref={phoneRef} /><br />
-                <input type="date" name="dob" ref={dobRef} /><br />
-                <input type="text" name="city" placeholder="Enter your city" ref={cityRef} /><br />
-                <input type="text" name="district" placeholder="Enter your district" ref={districtRef} /><br />
-                <select name="province" ref={provinceRef}>
-                    <option value="Province 1">Province 1</option>
-                    <option value="Province 2">Province 2</option>
-                    <option value="Province 3">Province 3</option>
-                    <option value="Province 4">Province 4</option>
-                    <option value="Province 5">Province 5</option>
-                    <option value="Province 6">Province 6</option>
-                    <option value="Province 7">Province 7</option>
-                </select><br />
-                <select name="country" ref={countryRef}>
-                    {(fetchError)?(<option value="">Error Loading Countries</option>):listCountriesData}
-                </select><br />
-                <CreateBtn onClick={create} />
-                {console.log(props.profilesProp)}
-            </form>
-        </div>
+        <Container>
+            <Row>
+                <Col lg={{span: 8,offset: 2}}>
+                    <div className="form p-4">
+                        <h4 className="font-medium mb-3 dark-font-color"><i class="fas fa-user"></i> Create Profile</h4>
+                        <form ref={formRef} className="p-3">
+                            <Row>
+                                <Col lg={6} className="mb-3">
+                                    <label className="form-label font-small">Name.</label>
+                                    <input className="form-field p-2" type="text" name="name" placeholder="Enter your name" ref={nameRef} />
+                                </Col>
+                                <Col lg={6} className="mb-3">
+                                    <label className="form-label font-small">Email.</label>
+                                    <input className="form-field p-2" type="email" name="email" placeholder="Enter your email" ref={emailRef} />
+                                </Col>
+                                <Col lg={6} className="mb-3">
+                                    <label className="form-label font-small">Phone.</label>
+                                    <input className="form-field p-2" type="tel" name="phone" placeholder="Enter your phone" ref={phoneRef} />
+                                </Col>
+                                <Col lg={6} className="mb-3">
+                                    <label className="form-label font-small">Date of Birth.</label>
+                                    <input className="form-field p-2" type="date" name="dob" ref={dobRef} />
+                                </Col>
+                                <Col lg={6} className="mb-3">
+                                    <label className="form-label font-small">City.</label>
+                                    <input className="form-field p-2" type="text" name="city" placeholder="Enter your city" ref={cityRef} />
+                                </Col>
+                                <Col lg={6} className="mb-3">
+                                    <label className="form-label font-small">District.</label>
+                                    <input className="form-field p-2" type="text" name="district" placeholder="Enter your district" ref={districtRef} />
+                                </Col>
+                                <Col lg={6} className="mb-3">
+                                    <label className="form-label font-small">Province.</label>
+                                    <select className="form-field p-2" name="province" ref={provinceRef}>
+                                        <option value="Province 1">Province 1</option>
+                                        <option value="Province 2">Province 2</option>
+                                        <option value="Province 3">Province 3</option>
+                                        <option value="Province 4">Province 4</option>
+                                        <option value="Province 5">Province 5</option>
+                                        <option value="Province 6">Province 6</option>
+                                        <option value="Province 7">Province 7</option>
+                                    </select>
+                                </Col>
+                                <Col lg={6} className="mb-3">
+                                    <label className="form-label font-small">Country.</label>
+                                    <select className="form-field p-2" name="country" ref={countryRef} style={{width: '100%'}}>
+                                        {(fetchError)?(<option value="">Error Loading Countries</option>):listCountriesData}
+                                    </select>
+                                </Col>
+                            </Row>
+                            <div className="text-center my-3">
+                                <CreateBtn onClick={create} />
+                            </div>                            
+                            {console.log(props.profilesProp)}
+                        </form>
+                    </div>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 
