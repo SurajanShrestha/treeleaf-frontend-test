@@ -1,8 +1,9 @@
 import React,{useState,useEffect,useRef} from 'react';
 import {connect} from 'react-redux';
-import {Container,Row,Col,Modal,Button} from 'react-bootstrap';
+import {Container,Row,Col,Modal} from 'react-bootstrap';
 import {editProfile} from '../../actions/action';
 import EditBtn from '../Buttons/EditBtn';
+import './editForm.css';
 
 function EditForm(props) {
     const nameRef=useRef();
@@ -89,36 +90,42 @@ function EditForm(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit Profile</Modal.Title>
+                    <Modal.Title><h4 className="font-medium mb-0 px-3 dark-font-color"><i className="fas fa-user-edit"></i> Edit Profile</h4></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {console.log(props)}
                     <Container>
                         <Row>
                             <Col lg={12}>
                                 <div className="editForm">
-                                    <form ref={formRef}>
+                                    <form className="p-3" ref={formRef}>
                                         <Row>
                                             <Col lg={6} className="mb-3">
-                                                <input type="text" name="name" placeholder="Enter your name" defaultValue={props.editName} ref={nameRef} />
+                                                <label className="edit-form-label font-small">Name.</label>
+                                                <input className="edit-form-field p-2" type="text" name="name" placeholder="Enter your name" defaultValue={props.editName} ref={nameRef} />
                                             </Col>
                                             <Col lg={6} className="mb-3">
-                                                <input type="email" name="email" placeholder="Enter your email" defaultValue={props.editEmail} ref={emailRef} />
+                                                <label className="edit-form-label font-small">Email.</label>
+                                                <input className="edit-form-field p-2" type="email" name="email" placeholder="Enter your email" defaultValue={props.editEmail} ref={emailRef} />
                                             </Col>
                                             <Col lg={6} className="mb-3">
-                                                <input type="tel" name="phone" placeholder="Enter your phone" defaultValue={props.editPhone} ref={phoneRef} />
+                                                <label className="edit-form-label font-small">Phone.</label>
+                                                <input className="edit-form-field p-2" type="tel" name="phone" placeholder="Enter your phone" defaultValue={props.editPhone} ref={phoneRef} />
                                             </Col>
                                             <Col lg={6} className="mb-3">
-                                                <input type="date" name="dob" defaultValue={props.editDob} ref={dobRef} />
+                                                <label className="edit-form-label font-small">Date of Birth.</label>
+                                                <input className="edit-form-field p-2" type="date" name="dob" defaultValue={props.editDob} ref={dobRef} />
                                             </Col>
                                             <Col lg={6} className="mb-3">
-                                                <input type="text" name="city" placeholder="Enter your city" defaultValue={props.editCity} ref={cityRef} />
+                                                <label className="edit-form-label font-small">City.</label>
+                                                <input className="edit-form-field p-2" type="text" name="city" placeholder="Enter your city" defaultValue={props.editCity} ref={cityRef} />
                                             </Col>
                                             <Col lg={6} className="mb-3">
-                                                <input type="text" name="district" placeholder="Enter your district" defaultValue={props.editDistrict} ref={districtRef} />
+                                                <label className="edit-form-label font-small">District.</label>
+                                                <input className="edit-form-field p-2" type="text" name="district" placeholder="Enter your district" defaultValue={props.editDistrict} ref={districtRef} />
                                             </Col>
                                             <Col lg={6} className="mb-3">
-                                                <select name="province" defaultValue={props.editProvince} ref={provinceRef}>
+                                                <label className="edit-form-label font-small">Province.</label>
+                                                <select className="edit-form-field p-2" name="province" defaultValue={props.editProvince} ref={provinceRef}>
                                                     <option value="Province 1">Province 1</option>
                                                     <option value="Province 2">Province 2</option>
                                                     <option value="Province 3">Province 3</option>
@@ -129,12 +136,12 @@ function EditForm(props) {
                                                 </select>
                                             </Col>
                                             <Col lg={6} className="mb-3">
-                                                <select name="country" defaultValue={props.editCountry} ref={countryRef}>
+                                                <label className="edit-form-label font-small">Country.</label>
+                                                <select className="edit-form-field p-2" name="country" defaultValue={props.editCountry} ref={countryRef} style={{width: '100%'}}>
                                                     {(fetchError)?(<option value="">Error Loading Countries</option>):listCountriesData}
                                                 </select>
                                             </Col>
                                         </Row>
-                                        {console.log(props.profilesProp)}
                                     </form>
                                 </div>
                             </Col>
@@ -142,9 +149,9 @@ function EditForm(props) {
                     </Container>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={()=>props.handleCloseModal(false)}>
-                        Close
-                    </Button>
+                    <button className="custom-danger-btn" onClick={()=>props.handleCloseModal(false)}>
+                        <i className="far fa-times-circle"></i> Close
+                    </button>
                     <EditBtn onClick={edit} />
                 </Modal.Footer>
             </Modal>

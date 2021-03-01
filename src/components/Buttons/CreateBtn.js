@@ -5,7 +5,7 @@ function CreateBtn(props) {
         e.preventDefault();
         props.onClick();
     };
-    return (<button className="create-btn" type="submit" onClick={handleSubmit}><i class="fas fa-user-plus"></i> Add Profile</button>);
+    return (<button className="custom-primary-btn" type="submit" onClick={handleSubmit}><i className="fas fa-user-plus"></i> Add Profile</button>);
 }
 
 export default CreateBtn;

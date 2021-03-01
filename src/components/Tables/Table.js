@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {connect} from 'react-redux';
 import './table.css';
-import {Button,Table as BsTable} from 'react-bootstrap';
+import {Container,Row,Col,Table as BsTable} from 'react-bootstrap';
 import {deleteProfile,sortProfile} from '../../actions/action';
 import DeleteBtn from '../Buttons/DeleteBtn';
 import SortBtn from '../Buttons/SortBtn';
@@ -23,16 +23,16 @@ function Table(props) {
 
     const listTableData=props.profilesProp.map((item)=>{
         return(
-            <tr key={item.id} id={item.id}>
-                <td>{item.name}</td>
-                <td>{item.email}</td>
-                <td>{item.phone}</td>
-                <td>{item.dob}</td>
-                <td>{item.city}</td>
-                <td>{item.district}</td>
-                <td>{item.province}</td>
-                <td>{item.country}</td>
-                <td><Button onClick={()=>{
+            <tr className="light-shadow" key={item.id} id={item.id}>
+                <td className="font-xsmall">{item.name}</td>
+                <td className="font-xsmall">{item.email}</td>
+                <td className="font-xsmall">{item.phone}</td>
+                <td className="font-xsmall">{item.dob}</td>
+                <td className="font-xsmall">{item.city}</td>
+                <td className="font-xsmall">{item.district}</td>
+                <td className="font-xsmall">{item.province}</td>
+                <td className="font-xsmall">{item.country}</td>
+                <td><button className="custom-primary-btn mb-2" onClick={()=>{
                     setShowModal(true);
                     setEditProfileId(item.id);
                     setEditProfileName(item.name);
@@ -43,34 +43,39 @@ function Table(props) {
                     setEditProfileDistrict(item.district);
                     setEditProfileProvince(item.province);
                     setEditProfileCountry(item.country);
-                }}>Edit</Button>&emsp;<DeleteBtn handleDelete={()=>props.deleteProfileProp(item.id)}/></td>
-                {console.log(showModal)}
+                }}><i className="fas fa-user-edit"></i> Edit</button>&emsp;<DeleteBtn handleDelete={()=>props.deleteProfileProp(item.id)}/></td>
             </tr>
         );
     });
     return (
-        <div className="table">
-            <BsTable striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>Name&emsp;<SortBtn handleSort={()=>props.sortProfileProp()}/></th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Date of Birth(YYYY-MM-DD)</th>
-                        <th>City</th>
-                        <th>District</th>
-                        <th>Province</th>
-                        <th>Country</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {listTableData}
-                </tbody>
-            </BsTable>
-            <EditFormContainer show={showModal} handleCloseModal={setShowModal} editId={editProfileId} editName={editProfileName} editEmail={editProfileEmail} editPhone={editProfilePhone} editDob={editProfileDob} editCity={editProfileCity} editDistrict={editProfileDistrict} editProvince={editProfileProvince} editCountry={editProfileCountry} />
-        </div>
-    )
+        <Container>
+            <Row>
+                <Col lg={12}>
+                    <div className="table mt-0">
+                        <BsTable responsive hover className="mt-0">
+                            <thead>
+                                <tr className="light-shadow">
+                                    <th className="font-medium dark-font-color">Name&emsp;<SortBtn handleSort={()=>props.sortProfileProp()}/></th>
+                                    <th className="font-medium dark-font-color">Email</th>
+                                    <th className="font-medium dark-font-color">Phone</th>
+                                    <th className="font-medium dark-font-color">Date of Birth</th>
+                                    <th className="font-medium dark-font-color">City</th>
+                                    <th className="font-medium dark-font-color">District</th>
+                                    <th className="font-medium dark-font-color">Province</th>
+                                    <th className="font-medium dark-font-color">Country</th>
+                                    <th className="font-medium dark-font-color">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {listTableData}
+                            </tbody>
+                        </BsTable>
+                        <EditFormContainer show={showModal} handleCloseModal={setShowModal} editId={editProfileId} editName={editProfileName} editEmail={editProfileEmail} editPhone={editProfilePhone} editDob={editProfileDob} editCity={editProfileCity} editDistrict={editProfileDistrict} editProvince={editProfileProvince} editCountry={editProfileCountry} />
+                    </div>
+                </Col>
+            </Row>
+        </Container>
+    );
 }
 
 const mapStateToProps=(state)=>{

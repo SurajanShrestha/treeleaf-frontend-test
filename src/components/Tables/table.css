@@ -1,3 +1,13 @@
 .table{
     margin-top: 25px;
+    border-color: #f1f4f6;
+    border-collapse: separate;
+    border-spacing: 0px 8px;
+}
+thead{
+    background-color: white;
+}
+tbody tr{
+    background-color: white;
+    margin-bottom: 20px;    
 }

@@ -1,0 +1,16 @@
+.form{
+    background-color: white;
+}
+form{
+    border: 1px solid #e1e8ed;
+}
+.edit-form-label{
+    display: block;
+}
+.edit-form-field{
+    border: 1px solid #e1e8ed;
+    width: 90%;
+    height: 36px;
+    font-size: 13px;
+    font-weight: 300;
+}
